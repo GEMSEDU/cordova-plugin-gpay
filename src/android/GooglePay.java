@@ -309,6 +309,6 @@ public class GooglePay extends CordovaPlugin {
 
         public final List < String > SUPPORTED_METHODS =
             Arrays.asList(
-                "PAN_ONLY",
+                //"PAN_ONLY",
                 "CRYPTOGRAM_3DS");
     }
