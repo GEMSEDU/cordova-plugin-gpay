@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin id="cordova-plugin-gpay" version="1.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-  <name>Google Pay</name>
-  <description>Implements Google Pay and integrate with master card</description>
-  <keywords>cordova,payment,google pay</keywords>
-  <repo>https://github.com/GEMSEDU/cordova-plugin-gpay</repo>
-
-  <platform name="android">
-    <js-module name="googlepay" src="www/googlepay.js">
-      <clobbers target="GooglePay" />
-    </js-module>
-
-    <config-file parent="/*/application" target="AndroidManifest.xml">
-      <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true" />
-    </config-file>
-    
-    <dependency id="es6-promise-plugin" version="4.1.0" />
-
-    <config-file parent="/*" target="res/xml/config.xml">
-       			<feature name="GooglePay">   
+<plugin id="cordova-plugin-gpay" version="1.1.0"
+	xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>Google Pay</name>
+	<description>Implements Google Pay and integrate with master card</description>
+	<keywords>cordova,payment,google pay</keywords>
+	<repo>https://github.com/GEMSEDU/cordova-plugin-gpay</repo>
+	
+	<platform name="android">
+		<js-module name="googlepay" src="www/googlepay.js">
+			<clobbers target="GooglePay" />
+		</js-module>
+		
+		<config-file parent="/*/application" target="AndroidManifest.xml">
+			<meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true" />
+		</config-file>
+		
+		<dependency id="es6-promise-plugin" version="4.1.0" />
+		
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="GooglePay">
 				<param name="android-package" value="org.apache.cordova.gpay.GooglePay"/>
-         			<param name="onload" value="true"/>
+				<param name="onload" value="true"/>
 			</feature>
-    </config-file>
-    <config-file parent="/*" target="AndroidManifest.xml"></config-file>
-    <source-file src="src/android/GooglePay.java" target-dir="src/org/apache/cordova/gpay" />
-    <framework src="com.google.android.gms:play-services-wallet:16.0.0" />
-    <!-- <framework src="com.android.support:support-v13:27.+" />
-    <framework src="com.android.support:appcompat-v7:27.0.2" /> -->
-  </platform>
+		</config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<!-- Remove the AD_ID permission from the application node -->
+			<uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />
+		</config-file>
+		
+		<config-file parent="/*" target="AndroidManifest.xml"></config-file>
+		
+		<source-file src="src/android/GooglePay.java" target-dir="src/org/apache/cordova/gpay" />
+		
+		<framework src="com.google.android.gms:play-services-wallet:16.0.0" />		
+		<!-- <framework src="com.android.support:support-v13:27.+" /><framework src="com.android.support:appcompat-v7:27.0.2" /> -->
+	</platform>
 </plugin>
